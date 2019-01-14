@@ -12,6 +12,7 @@ class QuestionsList extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleRandomize = this.handleRandomize.bind(this);
     }
 
 
@@ -20,7 +21,11 @@ class QuestionsList extends Component {
         event.preventDefault();
         // if the answer is correct go to the folowing one, otherwise don't move
         if (this.state.answer.toLowerCase() === this.state.userAnswer.toLowerCase()) {
-           this.setState({questionNum: this.state.questionNum + 1, answer: this.props.questions[this.state.questionNum + 1].answer, fail: false}) 
+            let questionNum = this.state.questionNum;
+            if (questionNum >= this.props.questions.length) {
+                questionNum = 0
+            }
+           this.setState({questionNum: questionNum + 1, answer: this.props.questions[questionNum].answer, fail: false}) 
         } else {
             this.setState({fail: true})
         }
@@ -32,7 +37,21 @@ class QuestionsList extends Component {
     }
 
     handleRandomize(event) {
+        console.log('hi');
         event.preventDefault();
+
+        function generateRandomNumber(min, max) {
+            let random_number = Math.random() * (max - min) + min;
+            return Math.floor(random_number);
+        }
+
+        const number = generateRandomNumber(0, this.props.questions.length);
+
+        console.log('random number', number);
+    
+        this.setState({questionNum: number + 1, answer: this.props.questions[number].answer, fail: false})
+        
+        
     }
 
     
@@ -48,15 +67,18 @@ class QuestionsList extends Component {
         }
 
         return(
-            <div>Write your answer
-                <p>Question number {this.state.questionNum}</p>
+            <div>
+                <h2> Write your answer </h2>
+                <h3>Question number {this.state.questionNum}</h3>
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" onChange={this.handleChange} />
                     <button type="submit">Submit</button>
                     {fail}
                 </form>
 
+                <form type="submit" onSubmit={this.handleRandomize}>
                 <button type="submit">Randomize question</button>
+                </form>
                 
             </div>
         )

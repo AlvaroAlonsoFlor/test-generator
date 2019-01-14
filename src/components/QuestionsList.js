@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Question from './Question.js'
 
 class QuestionsList extends Component {
     constructor(props) {

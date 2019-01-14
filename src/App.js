@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import XLSX from 'xlsx';
+import QuestionsList from './components/QuestionsList';
 
 class App extends Component {
 
@@ -29,15 +30,16 @@ class App extends Component {
       sheet = XLSX.utils.sheet_to_json(sheet, { header: ["num", "answer"]});
 
       this.setState({data: sheet})
-
-      console.log(sheet);
     }
   }
+
   render() {
 
     return (
       <div className="App">
         <input type="file" id="excel-file" onChange={this.handleUpload}/>
+        <QuestionsList questions={this.state.data}/>
+
       </div>
     );
   }

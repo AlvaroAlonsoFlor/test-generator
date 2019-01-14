@@ -37,7 +37,6 @@ class QuestionsList extends Component {
     }
 
     handleRandomize(event) {
-        console.log('hi');
         event.preventDefault();
 
         function generateRandomNumber(min, max) {
@@ -46,8 +45,6 @@ class QuestionsList extends Component {
         }
 
         const number = generateRandomNumber(0, this.props.questions.length);
-
-        console.log('random number', number);
     
         this.setState({questionNum: number + 1, answer: this.props.questions[number].answer, fail: false})
         
@@ -63,7 +60,7 @@ class QuestionsList extends Component {
         if (!this.state.fail) {
             fail = ""
         } else {
-            fail = "Incorrect, please try again"
+            fail = <h3> "Incorrect, please try again" </h3>
         }
 
         return(

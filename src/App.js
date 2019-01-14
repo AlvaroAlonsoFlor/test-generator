@@ -43,7 +43,11 @@ class App extends Component {
 
     return (
       <div className="App">
-        <input type="file" id="excel-file" onChange={this.handleUpload}/>
+        <label htmlFor="excel-file" className="custom-file-upload">
+          Upload your Excel here
+        </label>
+        <input id="excel-file" type="file" onChange={this.handleUpload}/>
+        
         {data}
 
       </div>

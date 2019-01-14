@@ -11,7 +11,6 @@ class App extends Component {
       data: null
     }
      this.handleUpload = this.handleUpload.bind(this);
-
   }
 
   handleUpload(event) {
@@ -35,10 +34,17 @@ class App extends Component {
 
   render() {
 
+    let data = ""
+
+    // Only render questions when file is uploaded
+    if (this.state.data) {
+      data = (<QuestionsList questions={this.state.data}/>)
+    }
+
     return (
       <div className="App">
         <input type="file" id="excel-file" onChange={this.handleUpload}/>
-        <QuestionsList questions={this.state.data}/>
+        {data}
 
       </div>
     );

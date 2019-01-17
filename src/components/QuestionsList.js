@@ -5,7 +5,7 @@ class QuestionsList extends Component {
         super(props);
         this.state = {
             questionNum: 1,
-            question: this.props.questions[0].question,
+            question: this.props.questions[this.state.questionNum].question,
             answer: this.props.questions[0].answer,
             userAnswer: "",
             fail: false,

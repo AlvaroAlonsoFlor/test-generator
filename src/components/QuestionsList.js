@@ -62,7 +62,7 @@ class QuestionsList extends Component {
     getAnswer(event) {
         const input = document.querySelector('#answer')
         input.value = this.state.answer;
-        this.setState({correctQuestions: this.state.correctQuestions - 1, userAnswer: this.state.answer})
+        this.setState({correctQuestions: this.state.correctQuestions - 1, incorrectQuestions: this.state.incorrectQuestions + 1, userAnswer: this.state.answer})
     }
 
     correctAnswersPercentage() {

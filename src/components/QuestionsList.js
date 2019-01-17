@@ -100,7 +100,7 @@ class QuestionsList extends Component {
 
                 <h3>Write your answer</h3>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" id="answer" onChange={this.handleChange} />
+                    <input type="text" id="answer" autocomplete="off" onChange={this.handleChange} />
                     <button type="submit">Submit</button>
                     {fail}
                 </form>

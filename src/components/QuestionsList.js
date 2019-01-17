@@ -15,6 +15,7 @@ class QuestionsList extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleRandomize = this.handleRandomize.bind(this);
+        this.getAnswer = this.getAnswer.bind(this);
     }
 
 
@@ -58,6 +59,12 @@ class QuestionsList extends Component {
         
     }
 
+    getAnswer(event) {
+        const input = document.querySelector('#answer')
+        input.value = this.state.answer;
+        this.setState({correctQuestions: this.state.correctQuestions - 1, userAnswer: this.state.answer})
+    }
+
     correctAnswersPercentage() {
         let result = 0
 
@@ -74,9 +81,9 @@ class QuestionsList extends Component {
 
     render() {
 
-        const correctAnswersPercentage = this.correctAnswersPercentage()
+        const correctAnswersPercentage = this.correctAnswersPercentage();
 
-        let fail
+        let fail;
 
         if (!this.state.fail) {
             fail = ""
@@ -95,6 +102,8 @@ class QuestionsList extends Component {
                 </form>
 
                 <button onClick={this.handleRandomize}>Randomize question</button>
+
+                <button onClick={this.getAnswer}>Show me the answer</button>
 
                 <p>You have answered {this.state.correctQuestions} questions right and {this.state.incorrectQuestions} questions wrong</p>
                 <p>The percentage of correct answers is {correctAnswersPercentage}%</p>

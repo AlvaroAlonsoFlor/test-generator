@@ -26,6 +26,9 @@ class QuestionsList extends Component {
                 questionNum = 0
             }
            this.setState({questionNum: questionNum + 1, answer: this.props.questions[questionNum].answer, fail: false}) 
+           //Reset input in form
+           const answer = document.querySelector('#answer')
+           answer.value = ""
         } else {
             this.setState({fail: true})
         }
@@ -68,7 +71,7 @@ class QuestionsList extends Component {
                 <h2> Write your answer </h2>
                 <h3>Question number {this.state.questionNum}</h3>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" onChange={this.handleChange} />
+                    <input type="text" id="answer" onChange={this.handleChange} />
                     <button type="submit">Submit</button>
                     {fail}
                 </form>

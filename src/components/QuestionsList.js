@@ -94,9 +94,7 @@ class QuestionsList extends Component {
                     {fail}
                 </form>
 
-                <form type="submit" onSubmit={this.handleRandomize}>
-                <button type="submit">Randomize question</button>
-                </form>
+                <button onClick={this.handleRandomize}>Randomize question</button>
 
                 <p>You have answered {this.state.correctQuestions} questions right and {this.state.incorrectQuestions} questions wrong</p>
                 <p>The percentage of correct answers is {correctAnswersPercentage}%</p>

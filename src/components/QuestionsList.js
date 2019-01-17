@@ -5,7 +5,7 @@ class QuestionsList extends Component {
         super(props);
         this.state = {
             questionNum: 1,
-            question: this.props.questions[this.state.questionNum].question,
+            question: this.props.questions[0].question,
             answer: this.props.questions[0].answer,
             userAnswer: "",
             fail: false,
@@ -29,7 +29,7 @@ class QuestionsList extends Component {
             if (questionNum >= this.props.questions.length) {
                 questionNum = 0
             }
-           this.setState({questionNum: questionNum + 1, answer: this.props.questions[questionNum].answer, fail: false, correctQuestions: this.state.correctQuestions + 1, userAnswer: ""}) 
+            this.setState({ questionNum: questionNum + 1, question: this.props.questions[questionNum].question, answer: this.props.questions[questionNum].answer, fail: false, correctQuestions: this.state.correctQuestions + 1, userAnswer: ""}) 
            //Reset input in form
            const answer = document.querySelector('#answer')
            answer.value = ""

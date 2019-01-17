@@ -26,7 +26,7 @@ class App extends Component {
 
       sheet = workbook.Sheets[worksheet_name];
       // Transform sheet into readable format
-      sheet = XLSX.utils.sheet_to_json(sheet, { header: ["num", "answer"]});
+      sheet = XLSX.utils.sheet_to_json(sheet, { header: ["question", "answer"]});
 
       this.setState({data: sheet})
     }

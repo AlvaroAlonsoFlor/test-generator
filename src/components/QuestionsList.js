@@ -64,6 +64,7 @@ class QuestionsList extends Component {
         if (this.state.correctQuestions > 0) {
             const questions = this.state.correctQuestions + this.state.incorrectQuestions;
             result = (100 * this.state.correctQuestions) / questions
+            result = result.toFixed(2)
         }
 
         return result;

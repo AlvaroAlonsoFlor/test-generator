@@ -7,7 +7,9 @@ class QuestionsList extends Component {
             questionNum: this.props.questions[0].num,
             answer: this.props.questions[0].answer,
             userAnswer: "",
-            fail: false
+            fail: false,
+            correctQuestions: 0,
+            incorrectQuestions: 0
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -19,18 +21,20 @@ class QuestionsList extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        // if the answer is correct go to the folowing one, otherwise don't move
+        //Correct answer
         if (this.state.answer.toLowerCase() === this.state.userAnswer.toLowerCase()) {
             let questionNum = this.state.questionNum;
             if (questionNum >= this.props.questions.length) {
                 questionNum = 0
             }
-           this.setState({questionNum: questionNum + 1, answer: this.props.questions[questionNum].answer, fail: false}) 
+           this.setState({questionNum: questionNum + 1, answer: this.props.questions[questionNum].answer, fail: false, correctQuestions: this.state.correctQuestions + 1}) 
            //Reset input in form
            const answer = document.querySelector('#answer')
            answer.value = ""
+        
+        //Incorrect answer
         } else {
-            this.setState({fail: true})
+            this.setState({fail: true, incorrectQuestions: this.state.incorrectQuestions + 1})
         }
 
     }
@@ -54,9 +58,22 @@ class QuestionsList extends Component {
         
     }
 
+    correctAnswersPercentage() {
+        let result = 0
+
+        if (this.state.correctQuestions > 0) {
+            const questions = this.state.correctQuestions + this.state.incorrectQuestions;
+            result = (100 * this.state.correctQuestions) / questions
+        }
+
+        return result;
+    }
+
     
 
     render() {
+
+        const correctAnswersPercentage = this.correctAnswersPercentage()
 
         let fail
 
@@ -79,6 +96,9 @@ class QuestionsList extends Component {
                 <form type="submit" onSubmit={this.handleRandomize}>
                 <button type="submit">Randomize question</button>
                 </form>
+
+                <p>You have answered {this.state.correctQuestions} questions right and {this.state.incorrectQuestions} questions wrong</p>
+                <p>The percentage of correct answers is {correctAnswersPercentage}%</p>
                 
             </div>
         )
